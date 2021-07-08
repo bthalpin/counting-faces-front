@@ -28,6 +28,8 @@ class Register extends React.Component {
         if (this.state.password.length<8){
             this.setState({alreadyRegistered:'Password must be 8 characters long'})
             return
+        }else{
+            this.setState({alreadyRegistered:''})
         }
         const emailPattern = /\S+@\S+\.\S+/
         if (emailPattern.test(this.state.email)){
@@ -51,6 +53,8 @@ class Register extends React.Component {
                 this.setState({alreadyRegistered:'Unable to Register'})
             }
         }).catch(err => console.log(err))
+    }else{
+        this.setState({alreadyRegistered:'Enter a valid email address'})
     }
     }
     render() {
