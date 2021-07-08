@@ -85,7 +85,7 @@ class App extends Component {
         })
     .then(response => response.json())
     .then(response=> {
-      if (response){
+      if (response!="Unable to work with API"){
         fetch(`https://secure-anchorage-68689.herokuapp.com/image`,{
           method:'put',
           headers:{'Content-Type':'application/json'},

@@ -24,6 +24,12 @@ class Register extends React.Component {
     }
 
     onSubmit = () => {
+        if (this.state.password.length<8){
+            this.setState({alreadyRegistered:'Password must be 8 characters long'})
+            return
+        }
+        const emailPattern = /\S+@\S+\.\S+/
+        if (emailPattern.test(this.state.email)){
         fetch("https://secure-anchorage-68689.herokuapp.com/register",{
             method:"POST",
             headers: {"Content-Type":"application/json"},
@@ -44,6 +50,7 @@ class Register extends React.Component {
                 this.setState({alreadyRegistered:'Unable to Register'})
             }
         }).catch(err => console.log(err))
+    }
     }
     render() {
         return (
