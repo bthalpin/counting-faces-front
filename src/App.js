@@ -53,17 +53,22 @@ class App extends Component {
     }})
   }
 
-  calculateFaceLocation = (data)=>{
-      const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
-      const image = document.getElementById('inputimage');
-      const width = Number(image.width);
-      const height = Number(image.height);
-      return{
-        leftCol :clarifaiFace.left_col*width,
-        topRow:clarifaiFace.top_row*height,
-        rightCol:width-(clarifaiFace.right_col*width),
-        bottomRow:height-(clarifaiFace.bottom_row*height)
+  calculateFaceLocation = (data,numberofFaces)=>{
+    const clarifaiFace = data.outputs[0].data.regions;
+    const image = document.getElementById('inputimage');
+    const width = Number(image.width);
+    const height = Number(image.height);
+    let tempBox = {}
+    for (let i=0;i<numberofFaces;i++){
+      let currentFace = clarifaiFace[i].region_info.bounding_box
+      tempBox[i] = {
+            leftCol :currentFace.left_col*width,
+            topRow:currentFace.top_row*height,
+            rightCol:width-(currentFace.right_col*width),
+            bottomRow:height-(currentFace.bottom_row*height)
       }
+    }
+          return tempBox 
   }
 
   displayFaceBox = (box) => {
@@ -75,6 +80,7 @@ class App extends Component {
   }
 
   onSubmit = () => {
+    let numberofFaces = 0;
     if (this.state.input){
       this.setState({imageUrl:this.state.input});
         fetch(`https://secure-anchorage-68689.herokuapp.com/imageurl`,{
@@ -87,12 +93,20 @@ class App extends Component {
     
     .then(response => response.json())
     .then(response=> {
+      if (response.outputs[0].data.regions){
+        numberofFaces = response.outputs[0].data.regions.length
+        this.displayFaceBox(this.calculateFaceLocation(response,response.outputs[0].data.regions.length))
+      }else {
+        this.setState({box:{}})
+        
+      }
       if (response!="Unable to work with API"){
         fetch(`https://secure-anchorage-68689.herokuapp.com/image`,{
           method:'put',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({
-            id:this.state.user.id
+            id:this.state.user.id,
+            currentFaceCount:numberofFaces
           })
         })
         .then(response => response.json())
@@ -101,7 +115,6 @@ class App extends Component {
         })
         .catch(console.log)
       }
-      this.displayFaceBox(this.calculateFaceLocation(response))
     })
     .catch(err=>console.log(err))
   }
