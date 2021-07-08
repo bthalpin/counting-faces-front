@@ -75,7 +75,8 @@ class App extends Component {
   }
 
   onSubmit = () => {
-    this.setState({imageUrl:this.state.input});
+    if (this.state.input){
+      this.setState({imageUrl:this.state.input});
         fetch(`https://secure-anchorage-68689.herokuapp.com/imageurl`,{
           method:'post',
           headers:{'Content-Type':'application/json'},
@@ -83,6 +84,7 @@ class App extends Component {
             input:this.state.input
           })
         })
+    
     .then(response => response.json())
     .then(response=> {
       if (response!="Unable to work with API"){
@@ -103,6 +105,7 @@ class App extends Component {
     })
     .catch(err=>console.log(err))
   }
+}
 
   onRouteChange = (route) => {
     if (route === 'home'){
