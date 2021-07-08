@@ -24,6 +24,7 @@ class Register extends React.Component {
     }
 
     onSubmit = () => {
+        console.log('test')
         if (this.state.password.length<8){
             this.setState({alreadyRegistered:'Password must be 8 characters long'})
             return
