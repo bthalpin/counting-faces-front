@@ -2,7 +2,9 @@ body {
   margin: 0;
   padding: 0px;
   font-family: "Courier New",Courier,monospace;
-  background:linear-gradient(to right,lightblue,purple);
+  background:linear-gradient(to top,rgb(17, 51, 80),rgb(8, 185, 255));
+  height:100vh;
+  background-attachment: fixed;
 }
 
 button{

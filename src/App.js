@@ -26,6 +26,7 @@ const initialState = {
   input:'',
   imageUrl:'',
   box:{},
+  currentPhrase:", y",
   route:'signin',
   isSignedIn: false,
   user : {
@@ -96,9 +97,14 @@ class App extends Component {
       if (response.outputs[0].data.regions){
         numberofFaces = response.outputs[0].data.regions.length
         this.displayFaceBox(this.calculateFaceLocation(response,response.outputs[0].data.regions.length))
+        if (numberofFaces===1){
+          this.setState({currentPhrase:`, you added ${numberofFaces} face. Y`})
+        }else{
+          this.setState({currentPhrase:`, you added ${numberofFaces} faces. Y`})
+        }
       }else {
         this.setState({box:{}})
-        
+        this.setState({currentPhrase:', y'})
       }
       if (response!="Unable to work with API"){
         fetch(`https://secure-anchorage-68689.herokuapp.com/image`,{
@@ -112,6 +118,7 @@ class App extends Component {
         .then(response => response.json())
         .then(count => {
           this.setState(Object.assign(this.state.user, {entries: count}))
+          this.setState({input:''})
         })
         .catch(console.log)
       }
@@ -139,10 +146,11 @@ class App extends Component {
       {route === 'home'
         ? <div>
             <Logo />
-            <Rank name = {this.state.user.name} entries = {this.state.user.entries}/>
+            <Rank name = {this.state.user.name} entries = {this.state.user.entries} currentPhrase = {this.state.currentPhrase}/>
             <ImageLinkForm 
                 onInputChange = {this.onInputChange} 
                 onSubmit = {this.onSubmit}
+                input = {this.state.input}
             />
             <FaceRecognition box={box} imageUrl = {imageUrl} />
           </div>
