@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/countingfaces/static/css/main.f9d30a72.chunk.css",
+    "main.js": "/countingfaces/static/js/main.b3f43d8a.chunk.js",
+    "main.js.map": "/countingfaces/static/js/main.b3f43d8a.chunk.js.map",
+    "runtime-main.js": "/countingfaces/static/js/runtime-main.604f0cb0.js",
+    "runtime-main.js.map": "/countingfaces/static/js/runtime-main.604f0cb0.js.map",
+    "static/css/2.c1f4f5f4.chunk.css": "/countingfaces/static/css/2.c1f4f5f4.chunk.css",
+    "static/js/2.c131df0c.chunk.js": "/countingfaces/static/js/2.c131df0c.chunk.js",
+    "static/js/2.c131df0c.chunk.js.map": "/countingfaces/static/js/2.c131df0c.chunk.js.map",
+    "static/js/3.7ebf3b3c.chunk.js": "/countingfaces/static/js/3.7ebf3b3c.chunk.js",
+    "static/js/3.7ebf3b3c.chunk.js.map": "/countingfaces/static/js/3.7ebf3b3c.chunk.js.map",
+    "index.html": "/countingfaces/index.html",
+    "static/css/2.c1f4f5f4.chunk.css.map": "/countingfaces/static/css/2.c1f4f5f4.chunk.css.map",
+    "static/css/main.f9d30a72.chunk.css.map": "/countingfaces/static/css/main.f9d30a72.chunk.css.map",
+    "static/js/2.c131df0c.chunk.js.LICENSE.txt": "/countingfaces/static/js/2.c131df0c.chunk.js.LICENSE.txt",
+    "static/media/brain.e51b5a40.png": "/countingfaces/static/media/brain.e51b5a40.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.604f0cb0.js",
+    "static/css/2.c1f4f5f4.chunk.css",
+    "static/js/2.c131df0c.chunk.js",
+    "static/css/main.f9d30a72.chunk.css",
+    "static/js/main.b3f43d8a.chunk.js"
+  ]
+}
